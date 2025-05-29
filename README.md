@@ -1,38 +1,29 @@
-# 🍽️ Nutrition Bot - Telegram бот для планирования питания
+# Nutrition Bot - Telegram bot for meal planning
 
-Умный бот для подсчета КБЖУ и планирования рациона на основе персональных целей.
+A bot for calculating calories and planning meals based on personal goals.
 
-## ✨ Возможности
+### 👤 For users:
+- 🧮 **Automatic calorie calculation** using the Mifflin-St. Jeor formula
+- ✏️ **Manual entry** of target values
+- 🍳 **Selection of dishes** from a ready-made database (breakfast/lunch/dinner)
+- 📊 **Progress tracking** - how much has been eaten vs. the goal
+- 📈 **Calculation of deficit/surplus** for each macronutrient
+- 📱 **Intuitive interface** with detailed information about dishes
 
-### 👤 Для пользователей:
-- 🧮 **Автоматический расчет КБЖУ** по формуле Миффлина-Сан Жеора
-- ✏️ **Ручной ввод** целевых значений 
-- 🍳 **Выбор блюд** из готовой базы (завтрак/обед/ужин)
-- 📊 **Отслеживание прогресса** - сколько съедено vs цель
-- 📈 **Подсчет дефицита/профицита** по каждому макронутриенту
-- 📱 **Интуитивный интерфейс** с подробной информацией о блюдах
+### 👨‍💻 For administrators:
+- ➕ **Adding new dishes** with complete KBZHU information
+- 🗑️ **Deleting dishes** with confirmation and usage statistics
+- 📊 **Usage statistics** for the bot and dish popularity
 
-### 👨‍💻 Для администраторов:
-- ➕ **Добавление новых блюд** с полной информацией КБЖУ
-- 🗑️ **Удаление блюд** с подтверждением и статистикой использования
-- 📊 **Статистика использования** бота и популярности блюд
+## 📦 Installation
 
-## 🚀 Технологии
-
-- **Python 3.8+**
-- **aiogram 3.4.1** - фреймворк для Telegram ботов
-- **SQLite** - локальная база данных
-- **FSM** - машина состояний для диалогов
-
-## 📦 Установка
-
-### 1. Клонируй репозиторий:
+### 1. Clone the repository:
 ```bash
 git clone https://github.com/your-username/nutrition-bot.git
 cd nutrition-bot
 ```
 
-### 2. Создай виртуальное окружение:
+### 2. Create a virtual environment:
 ```bash
 python -m venv venv
 source venv/bin/activate  # Linux/Mac
@@ -40,106 +31,65 @@ source venv/bin/activate  # Linux/Mac
 venv\Scripts\activate  # Windows
 ```
 
-### 3. Установи зависимости:
+### 3. Set dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Настройка бота:
+### 4. Bot configuration:
 
-#### Создай файл `.env`:
+#### Create a `.env` file:
 ```env
 BOT_TOKEN=your_bot_token_here
 ADMIN_ID=your_telegram_user_id
 ```
 
-#### Или измени в коде `main.py`:
+#### Or changes in the `main.py` code:
 ```python
 bot = Bot(token="YOUR_BOT_TOKEN")
 ADMIN_IDS = [YOUR_USER_ID]  # Твой Telegram user_id
 ```
 
-### 5. Запуск:
+### 5. Launch:
 ```bash
 python main.py
 ```
 
-## ⚙️ Настройка
+## ⚙️ Settings
 
-### Получение токена бота:
-1. Напиши [@BotFather](https://t.me/BotFather) в Telegram
-2. Создай нового бота командой `/newbot`
-3. Скопируй полученный токен
+#### Obtaining a bot token:
+1. Write [@BotFather](https://t.me/BotFather) in Telegram
+2. Create a new bot with the command `/newbot`
+3. Copy the token you receive
 
-### Получение своего user_id:
-1. Напиши [@userinfobot](https://t.me/userinfobot)
-2. Скопируй свой ID для добавления в `ADMIN_IDS`
+### Obtaining your user_id:
+1. Write to [@userinfobot](https://t.me/userinfobot)
+2. Copy your ID to add it to `ADMIN_IDS`
 
-## 📊 База данных
+## 📊 Database
 
-Бот автоматически создает SQLite базу с таблицами:
-- `users` - профили пользователей и их КБЖУ цели
-- `meals` - база блюд с полной информацией
-- `user_daily_meals` - выбранные блюда по дням
+The bot automatically creates an SQLite database with the following tables:
+- `users` - user profiles and their KBZHU goals
+- `meals` - database of meals with complete information
+- `user_daily_meals` - selected meals by day
 
-## 🍽️ Примеры блюд
+## 📱 Bot commands
 
-В базе уже есть 15 готовых блюд:
-- **Завтраки**: Овсянка с бананом, Омлет с овощами, Творог с ягодами...
-- **Обеды**: Курица с гречкой, Говядина с рисом, Рыба с картофелем...  
-- **Ужины**: Творог с ягодами, Куриная грудка с салатом, Рыба на пару...
+- `/start` - launch and main menu
+- `📊 Set up KBZHU` - calculation or manual entry of goals
+- `🍽️ Food menu` - selection of dishes
+- `📈 My progress` - statistics for the day
+- `👨‍💻 Admin panel` - meal management (for admins only)
 
-## 📱 Команды бота
+## 🔧 Development
 
-- `/start` - запуск и главное меню
-- `📊 Настроить КБЖУ` - расчет или ручной ввод целей
-- `🍽️ Меню питания` - выбор блюд
-- `📈 Мой прогресс` - статистика за день
-- `👨‍💻 Админ панель` - управление блюдами (только для админов)
-
-## 🔧 Разработка
-
-### Структура проекта:
+### Project structure:
 ```
 nutrition-bot/
-├── main.py              # Основной файл бота
-├── requirements.txt     # Зависимости
-├── .env                # Конфигурация (не в гите)
-├── .gitignore          # Исключения для git
-├── README.md           # Документация
-└── nutrition_bot.db    # База данных (создается автоматически)
+├── main.py              # Main bot file
+├── requirements.txt     # Dependencies
+├── .env                # Configuration (not in git)
+├── .gitignore          # Exclusions for git
+├── README.md           # Documentation
+└── nutrition_bot.db    # Database (created automatically)
 ```
-
-### Добавление новых функций:
-1. Создай новые состояния в классах `State`
-2. Добавь методы в класс `Database`
-3. Создай обработчики сообщений с декораторами `@dp.message`
-
-## 🤝 Вклад в проект
-
-1. Форкни репозиторий
-2. Создай ветку для новой функции (`git checkout -b feature/new-feature`)
-3. Сделай коммит (`git commit -am 'Add new feature'`)
-4. Запуши изменения (`git push origin feature/new-feature`)
-5. Создай Pull Request
-
-## 📄 Лицензия
-
-MIT License - используй как хочешь! 
-
-## 💡 Идеи для развития
-
-- [ ] Добавление фотографий блюд
-- [ ] Экспорт статистики в Excel
-- [ ] Интеграция с внешними API продуктов
-- [ ] Уведомления о приемах пищи
-- [ ] Система достижений
-- [ ] Рекомендации блюд на основе целей
-
-## 📞 Поддержка
-
-Если нашел баг или есть идеи - создавай [Issue](https://github.com/your-username/nutrition-bot/issues)!
-
----
-
-⭐ **Не забудь поставить звездочку, если проект понравился!** ⭐
